@@ -12,6 +12,15 @@ models:
       - name: first_order_date
         description: NULL when a customer has not yet placed an order.
 
+  - name: orders
+    description: a list of orders by customers and payment 
+    columns:
+      - name: order_id
+        descrption: unique identifier for orders; Primary key
+        tests:
+          - unique
+          - not_null
+
   - name: stg_customers
     description: This model cleans up customer data
     columns:
@@ -33,3 +42,22 @@ models:
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+  - name: stg_payments
+    description: This model cleans up Stripe payment data
+    columns:
+      - name: payment_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: payment_method
+        description: How a customer paid
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['success', 'fail']
