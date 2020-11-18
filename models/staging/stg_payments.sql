@@ -5,4 +5,4 @@ SELECT id AS payment_id,
 	   created AS payment_time,
 	   status
 
-FROM raw.stripe.payment AS payment
+FROM {{ source('stripe', 'payment') }} AS payment

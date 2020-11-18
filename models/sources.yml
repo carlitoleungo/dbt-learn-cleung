@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: '{{ doc("jaffle_shop_schema") }}'
+    database: raw
+    tables:
+      - name: orders
+      - name: customers
+
+  - name: stripe
+    description: data from Stripe
+    database: raw
+    tables:
+      - name: payment

@@ -12,7 +12,6 @@ WITH customer_orders AS (
            SUM(payment_amount) AS total_order_value
 
     FROM {{ ref('orders')}} orders
-        WHERE payment_status = 'success'
 
     GROUP BY 1
 )
